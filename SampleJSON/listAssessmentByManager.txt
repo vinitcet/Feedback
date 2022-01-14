@@ -1,0 +1,45 @@
+listAssessmentByManager
+
+http://localhost:8080/assessment/listAssessmentByManager/1
+
+[
+    {
+        "id": 5,
+        "employeeId": 3,
+        "managerId": 1,
+        "accessorId": 2,
+        "feedback": null,
+        "active": true,
+        "status": "Created",
+        "createdBy": "Priya",
+        "modifiedBy": null,
+        "createdDate": "2022-01-14T16:19:44.424586",
+        "modifiedDate": "2022-01-14T16:19:44.424586"
+    },
+    {
+        "id": 6,
+        "employeeId": 4,
+        "managerId": 1,
+        "accessorId": 2,
+        "feedback": null,
+        "active": true,
+        "status": "Created",
+        "createdBy": "Pushpa",
+        "modifiedBy": null,
+        "createdDate": "2022-01-14T16:22:20.943913",
+        "modifiedDate": "2022-01-14T16:22:20.943913"
+    },
+    {
+        "id": 7,
+        "employeeId": 2,
+        "managerId": 1,
+        "accessorId": 1,
+        "feedback": null,
+        "active": true,
+        "status": "Created",
+        "createdBy": "Punit",
+        "modifiedBy": null,
+        "createdDate": "2022-01-14T16:25:31.748023",
+        "modifiedDate": "2022-01-14T16:25:31.748023"
+    }
+]
