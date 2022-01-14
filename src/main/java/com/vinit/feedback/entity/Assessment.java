@@ -25,9 +25,9 @@ public class Assessment {
     @JoinColumn(name = "id")
     private Period period;*/
     private String feedback;
+    private String feedbackMessage;
     private boolean active = true;
     private AssessmentStatus status = AssessmentStatus.Creating;
-
     private String createdBy;
     private String modifiedBy;
     private LocalDateTime createdDate;
@@ -169,5 +169,11 @@ public class Assessment {
         //return (this.managerId != null && this.managerId.equals(userI)) || (this.employeeId != null && this.employee.equals(user));
     }
 
+    public String getFeedbackMessage() {
+        return feedbackMessage;
+    }
 
+    public void setFeedbackMessage(String feedbackMessage) {
+        this.feedbackMessage = feedbackMessage;
+    }
 }
