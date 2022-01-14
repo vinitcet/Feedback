@@ -303,7 +303,7 @@ public class User {
 
     @Override
     public String toString() {
-        return getFullName();
+        return getFirstName();
     }
 
 }

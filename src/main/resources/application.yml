@@ -27,10 +27,11 @@ spring:
     templates:
       path: mail-templates
 
-  security:
-    user:
-      password: password
-      name: feedback
+#  security:
+#    user:
+#      password: password
+#      name: feedback
+debug: true
 
 
 
