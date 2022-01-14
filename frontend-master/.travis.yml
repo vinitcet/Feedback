@@ -1,0 +1,24 @@
+language: node_js
+node_js: 12.14.0
+services: docker
+cache:
+  npm: true
+addons:
+  chrome: stable
+install:
+  - npm ci
+script:
+  - npm run lint
+  - npm run test
+after_success:
+  - npm run coveralls
+before_deploy:
+  # Note: On tag builds $TRAVIS_BRANCH contains tag name, not branch name
+  - docker build --tag="$DOCKER_REPOSITORY:$([ "$TRAVIS_BRANCH" == "master" ] && echo "latest" || echo "$TRAVIS_BRANCH")" --file=".docker/Dockerfile" .
+  - echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
+deploy:
+  provider: script
+  script: docker push "$DOCKER_REPOSITORY:$([ "$TRAVIS_BRANCH" == "master" ] && echo "latest" || echo "$TRAVIS_BRANCH")"
+  on:
+    all_branches: true
+    condition: $TRAVIS_PULL_REQUEST = false

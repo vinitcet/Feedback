@@ -1,0 +1,91 @@
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="app flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+
+        <div class="card" id="login-card">
+
+          <h5 class="card-header text-center">
+            <strong>{{ 'T_LOG_IN' | translate }}</strong>
+          </h5>
+
+          <!--Card content-->
+          <div class="card-body">
+            <ng-container *ngIf="credentialsLoginAvailable">
+
+              <div class="unsuccessful-login">
+                <ng-container *ngIf="loginUnsuccessful">
+                  <span>{{ 'T_INVALID_CREDENTIALS' | translate }}</span>
+                </ng-container>
+              </div>
+
+              <!-- Login/Password form -->
+              <form>
+                <div class="form-group"
+                     [ngClass]="{'has-danger': loginUnsuccessful}">
+                  <input [(ngModel)]="username"
+                         [ngModelOptions]="{standalone: true}"
+                         type="text"
+                         [required]="true"
+                         (ngModelChange)="resetFormValidity()"
+                         class="form-control"
+                         placeholder="{{ 'T_LOGIN' | translate }}">
+                </div>
+                <div class="form-group"
+                     [ngClass]="{'has-danger': loginUnsuccessful}">
+                  <input [(ngModel)]="password"
+                         (ngModelChange)="resetFormValidity()"
+                         [ngModelOptions]="{standalone: true}"
+                         type="password" class="form-control" placeholder="{{ 'T_PASSWORD' | translate }}">
+                </div>
+
+                <button
+                  [disabled]="!username || !password"
+                  class="btn btn-outline-info btn-block" type="submit"
+                  (click)="loginWithCredentials()">{{ 'T_LOG_IN' | translate }}</button>
+
+              </form>
+            </ng-container>
+
+            <ng-container *ngIf="availableSocialProviders.length > 0">
+              <p class="text-muted"><span *ngIf="credentialsLoginAvailable">{{ 'T_OR' | translate }} </span>{{ 'T_LOGIN_TEXT' | translate }}</p>
+            </ng-container>
+
+            <!-- Social login -->
+            <ng-container *ngFor="let provider of availableSocialProviders">
+              <a type="button"
+                 class="social-button {{ provider.buttonClass }}"
+                 (click)="login(provider.key)">
+                <i class="fa {{ provider.icon }}"></i>
+              </a>
+            </ng-container>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="app-footer ml-0">
+  <ul class="nav navbar-nav ml-auto">
+    <bs-language-selector></bs-language-selector>
+  </ul>
+</footer>
+
+
