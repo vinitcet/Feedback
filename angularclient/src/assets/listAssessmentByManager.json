@@ -11,6 +11,7 @@
         "status": "Created",
         "createdBy": "Priya",
         "modifiedBy": null,
+        "feedbackMessage": "hello pushpa",
         "createdDate": "2022-01-14T16:19:44.424586",
         "modifiedDate": "2022-01-14T16:19:44.424586"
     },
@@ -22,6 +23,7 @@
         "feedback": null,
         "active": true,
         "status": "Created",
+        "feedbackMessage": "hello pushpa",
         "createdBy": "Pushpa",
         "modifiedBy": null,
         "createdDate": "2022-01-14T16:22:20.943913",
@@ -32,6 +34,7 @@
         "employeeId": 2,
         "managerId": 1,
         "accessorId": 1,
+        "feedbackMessage": "hello pushpa",
         "feedback": null,
         "active": true,
         "status": "Created",

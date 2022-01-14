@@ -11,37 +11,43 @@ import { Router } from '@angular/router';
 export class HelloWorldComponent implements OnInit {
 
   message: string;
-  seekFeedbackCheck: boolean=false;
-  reporteeFeedbackCheck: boolean=false;
-  feedbackRequestCheck:boolean=false;
-  constructor(private helloWorldService: HelloWordService,  private router: Router,
-    ) { }
+  seekFeedbackCheck: boolean = false;
+  reporteeFeedbackCheck: boolean = false;
+  feedbackRequestCheck: boolean = false;
+  myFeedbackCheck: boolean = false;
+
+  constructor(private helloWorldService: HelloWordService, private router: Router,
+  ) { }
 
   ngOnInit() {
 
     console.log("HelloWorldComponent");
-    this.helloWorldService.helloWorldService().subscribe( (result) => {
+    this.helloWorldService.helloWorldService().subscribe((result) => {
       this.message = result.content;
     });
   }
 
-  seekFeedback(){
-    console.log("jhfdk")
-    this.seekFeedbackCheck =true
-    // this.router.navigate(['/seek-feedback']);
-
+  seekFeedback() {
+    this.home()
+    this.seekFeedbackCheck = true
   }
-  home(){
+  home() {
     this.seekFeedbackCheck = false
-    this.reporteeFeedbackCheck =false
-    this.feedbackRequestCheck =false
+    this.reporteeFeedbackCheck = false
+    this.feedbackRequestCheck = false
+    this.myFeedbackCheck = false
   }
 
-  reporteeFeedback(){
-    this.reporteeFeedbackCheck =true
+  reporteeFeedback() {
+    this.home()
+    this.reporteeFeedbackCheck = true
   }
-  feedbackRequest(){
-    this.feedbackRequestCheck =true
-
+  feedbackRequest() {
+    this.home()
+    this.feedbackRequestCheck = true
+  }
+  myFeedback() {
+    this.home()
+    this.myFeedbackCheck = true
   }
 }

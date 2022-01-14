@@ -1,7 +1,5 @@
 
-listAssessmentByUser
 
-http://localhost:8080/assessment/listAssessmentByUser/3
 
 [
     {
@@ -10,6 +8,7 @@ http://localhost:8080/assessment/listAssessmentByUser/3
         "managerId": 1,
         "accessorId": 2,
         "feedback": null,
+        "feedbackMessage": "hello pushpa",
         "active": true,
         "status": "Created",
         "createdBy": "Priya",

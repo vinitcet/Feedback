@@ -4,6 +4,7 @@
       <tr>
         <th scope="col">Accessor Id</th>
         <th scope="col">Feedback</th>
+        <th scope="col">Feedback Message</th>
         <th scope="col">Status</th>
         <th scope="col">Created By</th>
       </tr>
@@ -12,6 +13,7 @@
       <tr *ngFor ='let item of managerAssessmentData'>
         <th scope="row">{{item.accessorId}}</th>
         <td>{{item.feedback}}</td>
+        <td>{{item.feedbackMessage}}</td>
         <td>{{item.status}}</td>
         <td>{{item.createdBy}}</td>
       </tr>

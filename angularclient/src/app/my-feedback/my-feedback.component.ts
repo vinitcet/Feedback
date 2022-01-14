@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FeedbackService } from '../feedback.service';
 
 @Component({
   selector: 'app-my-feedback',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-feedback.component.css']
 })
 export class MyFeedbackComponent implements OnInit {
+  userAssessmentData: any;
 
-  constructor() { }
+  constructor(private feedbackService: FeedbackService
+  ) { }
 
   ngOnInit() {
+    this.feedbackService.getAssessmentByUser().subscribe(data => {
+      this.userAssessmentData = data
+  });
+  
   }
 
 }

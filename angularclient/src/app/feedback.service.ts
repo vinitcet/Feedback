@@ -10,11 +10,20 @@ export class FeedbackService {
 
   constructor(private http: HttpClient) { }
 
-  getAssessmentByManager() : Observable<any>{
-    console.log('inside service')
-    // return this.http.get<Message>('http://localhost:8080/api/v1/greeting');
-    return this.http.get("./assets/listAssessmentByManager.json"); 
-    return this.http.get<any>('http://localhost:8080/assessment/listAssessmentByManager/1');
+  public headers = new HttpHeaders({
+    'contentType': 'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'access-control-allow-headers': 'open'
+  });
+
+  getAssessmentByManager(): Observable<any> {
+    return this.http.get("./assets/listAssessmentByManager.json");
+    return this.http.get<any>('http://localhost:8080/assessment/listAssessmentByManager/1', { headers: this.headers });
   }
 
+  getAssessmentByUser(): Observable<any> {
+    return this.http.get("./assets/listAssessmentByUser.json");
+    return this.http.get<any>('http://localhost:8080/assessment/listAssessmentByUser/3', { headers: this.headers });
+  }
 }
