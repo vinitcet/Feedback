@@ -29,8 +29,8 @@ export class SeekFeedbackComponent implements OnInit {
     }
     this.feedbackService.sendFeedbackRequest(payload).subscribe(data => { console.log(payload)
       console.log(data);
-      this.successMessage = data
       this.successFbRequest = true;
+      this.successMessage = data
       this.accessorId = ''
       this.feedbackMessage = ''
     }, () => {

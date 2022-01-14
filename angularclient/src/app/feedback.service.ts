@@ -28,6 +28,12 @@ export class FeedbackService {
   }
 
   sendFeedbackRequest(payload): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/assessment/addFeedbackRequest', { headers: this.headers }, payload);
+    // return this.http.get("./assets/listAssessmentByUser.json");
+    return this.http.post<any>('http://localhost:8080/assessment/addFeedbackRequest', payload);
+  }
+
+  getAssessmentByAssignee(): Observable<any> {
+    // return this.http.get("./assets/listAssessmentByManager.json");
+    return this.http.get<any>('http://localhost:8080/assessment/listAssessmentByAssignee/1 ', { headers: this.headers });
   }
 }
