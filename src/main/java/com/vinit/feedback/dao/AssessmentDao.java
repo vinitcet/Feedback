@@ -12,4 +12,6 @@ public interface AssessmentDao extends JpaRepository<Assessment, Long> {
     List<Assessment> findAllByEmployeeId(Long userId);
 
     List<Assessment> findAllByManagerId(Long userId);
+
+    List<Assessment> findAllByAccessorId(Long userId);
 }

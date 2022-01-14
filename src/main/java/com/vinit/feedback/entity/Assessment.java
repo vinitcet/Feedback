@@ -21,13 +21,13 @@ public class Assessment {
     private Long managerId;
     @NotNull
     private Long accessorId;
-   /* @OneToOne
-    @JoinColumn(name = "id")
-    private Period period;*/
+    /* @OneToOne
+     @JoinColumn(name = "id")
+     private Period period;*/
     private String feedback;
     private String feedbackMessage;
     private boolean active = true;
-    private AssessmentStatus status = AssessmentStatus.Creating;
+    private String status;
     private String createdBy;
     private String modifiedBy;
     private LocalDateTime createdDate;
@@ -121,17 +121,12 @@ public class Assessment {
         this.modifiedDate = modifiedDate;
     }
 
-    public AssessmentStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(AssessmentStatus status) {
+    public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Assessment progressStatus() {
-        this.status = this.status.getNextStatus();
-        return this;
     }
 
     public boolean isActive() {
