@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AssessmentService {
@@ -14,6 +15,11 @@ public class AssessmentService {
 
     public List<Assessment> getUserAssessment(Long userId) {
         return assessmentDao.findAllByEmployeeId(userId);
+
+    }
+
+    public List<Assessment> getUserAssignedRequest(Long userId) {
+        return assessmentDao.findAllByAccessorId(userId);
 
     }
 
@@ -27,6 +33,14 @@ public class AssessmentService {
 
     public Assessment createAssesment(Assessment assessment) {
         return assessmentDao.save(assessment);
+    }
+
+    public Assessment completeAssesment(Assessment assessment) {
+        return assessmentDao.save(assessment);
+    }
+
+    public Optional<Assessment> findAssessmentById(Long id) {
+        return assessmentDao.findById(id);
     }
 
 }

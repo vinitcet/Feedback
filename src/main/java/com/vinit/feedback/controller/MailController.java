@@ -25,9 +25,8 @@ public class MailController {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(NOREPLY_ADDRESS);
             message.setTo("vinitlucknow29@gmail.com");
-            message.setSubject("subject");
+            message.setSubject("New Feedback request::");
             message.setText("text");
-
             emailSender.send(message);
         } catch (MailException exception) {
             exception.printStackTrace();

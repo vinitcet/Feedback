@@ -4,6 +4,7 @@ import com.vinit.feedback.entity.Assessment;
 import com.vinit.feedback.entity.AssessmentStatus;
 import com.vinit.feedback.entity.User;
 import com.vinit.feedback.service.AssessmentService;
+import com.vinit.feedback.service.MailService;
 import com.vinit.feedback.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,6 +22,9 @@ public class AssessmentController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MailService mailService;
+
     @GetMapping(value = "/listAssessment")
     public List<Assessment> findAllAssessment() {
         return assessmentService.findAllAssessment();
@@ -36,10 +40,15 @@ public class AssessmentController {
         return assessmentService.getUserAssessment(userId);
     }
 
+    @GetMapping(value = "/listAssessmentByAssignee/{userId}")
+    public List<Assessment> findAssesmentByAssignee(@PathVariable Long userId) {
+        return assessmentService.getUserAssignedRequest(userId);
+    }
+
     @PostMapping(value = "/addFeedbackRequest")
     //, consumes = "application/json", produces = "application/json")
     public String addFeedbackRequest(@RequestBody Assessment assessment) {
-        assessment.setStatus(AssessmentStatus.Created);
+        assessment.setStatus(String.valueOf(AssessmentStatus.Created));
         User user = userService.getUser(assessment.getEmployeeId()).get();
         assessment.setManagerId(user.getReportsTo());
         assessment.setCreatedDate(LocalDateTime.now());
@@ -50,6 +59,27 @@ public class AssessmentController {
             assessmentService.createAssesment(assessment);
         } catch (Exception e) {
             return "Error";
+        }
+        //Sending mail logic
+        try {
+            //mailService.sendSimpleMessage(assessment, user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Success";
+    }
+
+    @PutMapping(value = "/completeFeedback/{id}")
+    public String completeFeedback(@RequestBody Assessment newAssessment, @PathVariable Long id) {
+        Assessment assessment = assessmentService.findAssessmentById(id).get();
+        assessment.setFeedback(newAssessment.getFeedback());
+        assessment.setStatus(String.valueOf(AssessmentStatus.AccessorCompleted));
+        assessment.setModifiedDate(LocalDateTime.now());
+        assessment.setModifiedBy(userService.getUser(assessment.getAccessorId()).get().getFullName());
+        try {
+            assessmentService.completeAssesment(newAssessment);
+        } catch (Exception e) {
+            return "fail";
         }
         return "Success";
     }
@@ -64,7 +94,7 @@ public class AssessmentController {
         assessment.setAccessorId(1l);
         assessment.setCreatedDate(LocalDateTime.now());
         assessment.setModifiedDate(LocalDateTime.now());
-        assessment.setStatus(AssessmentStatus.Created);
+        assessment.setStatus(String.valueOf(AssessmentStatus.Created));
         try {
             assessmentService.createAssesment(assessment);
         } catch (Exception e) {
