@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FeedbackService } from '../feedback.service';
 
 @Component({
   selector: 'app-seek-feedback',
@@ -6,14 +7,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./seek-feedback.component.css']
 })
 export class SeekFeedbackComponent implements OnInit {
-
-  constructor() { }
+  seekFeedbackresponse: any;
+  accessorId: any;
+  feedbackMessage: string;
+  successMessage: any;
+  successFbRequest: boolean;
+  failFbRequest: boolean;
+  errorMessage: string;
+  constructor(private feedbackService: FeedbackService
+  ) { }
 
   ngOnInit() {
   }
 
 
-  home(){
-    
+  sendRequest() {
+    const payload = {
+      "employeeId": 1,
+      "accessorId": this.accessorId,
+      "feedbackMessage": this.feedbackMessage
+    }
+    this.feedbackService.sendFeedbackRequest(payload).subscribe(data => { console.log(payload)
+      console.log(data);
+      this.successMessage = data
+      this.successFbRequest = true;
+      this.accessorId = ''
+      this.feedbackMessage = ''
+    }, () => {
+        this.failFbRequest = true;
+        this.successFbRequest = false;
+        this.errorMessage = 'Failed to send feedback request'
+      });      
   }
 }

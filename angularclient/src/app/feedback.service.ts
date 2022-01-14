@@ -18,12 +18,16 @@ export class FeedbackService {
   });
 
   getAssessmentByManager(): Observable<any> {
-    return this.http.get("./assets/listAssessmentByManager.json");
+    // return this.http.get("./assets/listAssessmentByManager.json");
     return this.http.get<any>('http://localhost:8080/assessment/listAssessmentByManager/1', { headers: this.headers });
   }
 
   getAssessmentByUser(): Observable<any> {
-    return this.http.get("./assets/listAssessmentByUser.json");
+    // return this.http.get("./assets/listAssessmentByUser.json");
     return this.http.get<any>('http://localhost:8080/assessment/listAssessmentByUser/3', { headers: this.headers });
+  }
+
+  sendFeedbackRequest(payload): Observable<any> {
+    return this.http.post<any>('http://localhost:8080/assessment/listAssessmentByUser/3', { headers: this.headers }, payload);
   }
 }
