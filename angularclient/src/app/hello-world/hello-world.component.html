@@ -1,40 +1,41 @@
 <app-menu></app-menu>
 
 <h1>{{message}}</h1>
-<div class="d-flex justify-content-between">
-    <button (click)='seekFeedback()' class="btn btn-primary">Seek Feedback</button>
+<div class="d-flex">
+    <div class="d-flex flex-column">
+        <button (click)='seekFeedback()' class="btn btn-primary m-4">Seek Feedback</button>
 
-    <button (click)='reporteeFeedback()' class="btn btn-primary">Reportee Feedback</button>
+        <button (click)='reporteeFeedback()' class="btn btn-primary m-4">Reportee Feedback</button>
 
-    <button (click)='feedbackRequest()' class="btn btn-primary">Feedback Request</button>
+        <button (click)='feedbackRequest()' class="btn btn-primary m-4">Feedback Request</button>
 
-    <button (click)='myFeedback()' class="btn btn-primary">My Feedback</button>
-</div>
+        <button (click)='myFeedback()' class="btn btn-primary m-4">My Feedback</button>
+    </div>
+<!-- </div> -->
+<!-- <div> -->
+    <div *ngIf="seekFeedbackCheck" style="width: 100%;">
+        <app-seek-feedback></app-seek-feedback>
+        <div class="d-flex align-self-end">
+            <button (click)=home() class="btn btn-warning ">Cancel</button>
+        </div>
+    </div>
+    <div *ngIf="reporteeFeedbackCheck" style="width: 100%;">
+        <app-reportee-feedback></app-reportee-feedback>
+        <div class="d-flex align-self-end">
+            <button (click)=home() class="btn btn-warning ">Cancel</button>
+        </div>
+    </div>
+    <div *ngIf="feedbackRequestCheck" style="width: 100%;">
+        <app-feedback-request></app-feedback-request>
+        <div class="d-flex align-self-end">
+            <button (click)=home() class="btn btn-warning ">Cancel</button>
+        </div>
+    </div>
 
-<div *ngIf="seekFeedbackCheck">
-    <app-seek-feedback ></app-seek-feedback>
-    <div class="d-flex align-self-end">
-        <button (click)=home() class="btn btn-warning ">Cancel</button>
+    <div *ngIf="myFeedback" style="width: 100%;">
+        <app-my-feedback></app-my-feedback>
+        <div class="d-flex align-self-end">
+            <button (click)=home() class="btn btn-warning ">Cancel</button>
+        </div>
     </div>
 </div>
-<div *ngIf="reporteeFeedbackCheck">
-    <app-reportee-feedback ></app-reportee-feedback>
-    <div class="d-flex align-self-end">
-        <button (click)=home() class="btn btn-warning ">Cancel</button>
-    </div>
-</div>
-<div *ngIf="feedbackRequestCheck">
-    <app-feedback-request></app-feedback-request>
-    <div class="d-flex align-self-end">
-        <button (click)=home() class="btn btn-warning ">Cancel</button>
-    </div>
-</div>
-
-<div *ngIf="myFeedback">
-    <app-my-feedback></app-my-feedback>
-    <div class="d-flex align-self-end">
-        <button (click)=home() class="btn btn-warning ">Cancel</button>
-    </div>
-</div>
-
-

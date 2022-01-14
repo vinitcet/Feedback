@@ -33,6 +33,8 @@ export class HelloWorldComponent implements OnInit {
   }
   home(){
     this.seekFeedbackCheck = false
+    this.reporteeFeedbackCheck =false
+    this.feedbackRequestCheck =false
   }
 
   reporteeFeedback(){

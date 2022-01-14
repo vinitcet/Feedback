@@ -1,0 +1,20 @@
+
+listAssessmentByUser
+
+http://localhost:8080/assessment/listAssessmentByUser/3
+
+[
+    {
+        "id": 5,
+        "employeeId": 3,
+        "managerId": 1,
+        "accessorId": 2,
+        "feedback": null,
+        "active": true,
+        "status": "Created",
+        "createdBy": "Priya",
+        "modifiedBy": null,
+        "createdDate": "2022-01-14T16:19:44.424586",
+        "modifiedDate": "2022-01-14T16:19:44.424586"
+    }
+]
