@@ -28,6 +28,6 @@ export class FeedbackService {
   }
 
   sendFeedbackRequest(payload): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/assessment/listAssessmentByUser/3', { headers: this.headers }, payload);
+    return this.http.post<any>('http://localhost:8080/assessment/addFeedbackRequest', { headers: this.headers }, payload);
   }
 }
