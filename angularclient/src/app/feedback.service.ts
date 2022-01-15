@@ -20,7 +20,7 @@ export class FeedbackService {
 
   getAssessmentByManager(): Observable<any> {
     // return this.http.get("./assets/listAssessmentByManager.json");
-    return this.http.get<any>('http://localhost:8080/assessment/listAssessmentByManager/1', { headers: this.headers });
+    return this.http.get<any>(`http://localhost:8080/assessment/listAssessmentByManager/${this.userdata.id}`, { headers: this.headers });
   }
 
   getAssessmentByUser(): Observable<any> {
@@ -35,7 +35,7 @@ export class FeedbackService {
 
   getAssessmentByAssignee(): Observable<any> {
     // return this.http.get("./assets/listAssessmentByManager.json");
-    return this.http.get<any>('http://localhost:8080/assessment/listAssessmentByAssignee/1 ', { headers: this.headers });
+    return this.http.get<any>(`http://localhost:8080/assessment/listAssessmentByAssignee/${this.userdata.id}`, { headers: this.headers });
   }
 
   requestFeedback(payload, id): Observable<any> {
