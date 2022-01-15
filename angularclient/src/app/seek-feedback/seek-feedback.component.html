@@ -10,8 +10,8 @@
         </div>
         <div class="form-group">
           <label for="pwd">Message:</label>
-          <input type="text" class="form-control" [(ngModel)]="feedbackMessage" id="feedbackMessage"
-            placeholder="Enter Message for Feedback" name="feedbackMessage">
+          <textarea type="text" rows="4" class="form-control" [(ngModel)]="feedbackMessage" id="feedbackMessage"
+            placeholder="Enter Message for Feedback" name="feedbackMessage"></textarea>
         </div>
         <button (click)=sendRequest() class="btn btn-success">Send Feedback Request</button>
       </form>

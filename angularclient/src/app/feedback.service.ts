@@ -36,4 +36,8 @@ export class FeedbackService {
     // return this.http.get("./assets/listAssessmentByManager.json");
     return this.http.get<any>('http://localhost:8080/assessment/listAssessmentByAssignee/1 ', { headers: this.headers });
   }
+
+  requestFeedback(payload, id): Observable<any> {
+    return this.http.put<any>(`http://localhost:8080/assessment/completeFeedback/${id}`, payload);
+  }
 }

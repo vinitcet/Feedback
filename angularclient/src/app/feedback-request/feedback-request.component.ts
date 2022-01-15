@@ -9,6 +9,8 @@ declare var $: any;
 export class FeedbackRequestComponent implements OnInit {
   assigneeAssessmentData: any;
   viewFeedbackData: any;
+  feedbackMessage: any;
+  showMessage: boolean = false;
 
   constructor(private feedbackService: FeedbackService
   ) { }
@@ -23,6 +25,18 @@ export class FeedbackRequestComponent implements OnInit {
   view(data) { console.log(data)
     this.viewFeedbackData = data ;
     $('#viewMemberModal').modal('show');
+  }
+
+  requestFb(){
+    const payload = {
+      feedback : this.feedbackMessage
+    }
+    this.feedbackService.requestFeedback(payload, this.viewFeedbackData.id).subscribe(data => {
+      console.log(data);
+      
+      $('#viewMemberModal').modal('hide');
+      this.showMessage =true
+    });
   }
 
 }
