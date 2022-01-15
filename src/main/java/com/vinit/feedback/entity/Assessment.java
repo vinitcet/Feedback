@@ -171,4 +171,37 @@ public class Assessment {
     public void setFeedbackMessage(String feedbackMessage) {
         this.feedbackMessage = feedbackMessage;
     }
+
+    @Transient
+    public String AccessorName;
+
+    public String getAccessorName() {
+        return AccessorName;
+    }
+
+    public void setAccessorName(String accessorName) {
+        AccessorName = accessorName;
+    }
+
+    @Transient
+    public String EmployeeName;
+
+    public String getEmployeeName() {
+        return EmployeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        EmployeeName = employeeName;
+    }
+
+    @Transient
+    public String ManagerName;
+
+    public String getManagerName() {
+        return ManagerName;
+    }
+
+    public void setManagerName(String managerName) {
+        ManagerName = managerName;
+    }
 }

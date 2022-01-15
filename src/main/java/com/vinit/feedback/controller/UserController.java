@@ -49,8 +49,6 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     @PostMapping("/user")
@@ -58,11 +56,9 @@ public class UserController {
         return userService.createUser(user);
     }
 
-
     @DeleteMapping("/user/{id}")
     void deleteEmployee(@PathVariable Long id) {
         userService.deleteUser(id);
     }
-
 
 }

@@ -46,21 +46,21 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin();
     }*/
 
-    @Override
+/*    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest()
                 .authenticated().and()
                 .httpBasic();
-    }
+    }*/
 
-/*
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest()
                 .authenticated().and()
                 //.formLogin().and()
                 .httpBasic();
-    }*/
+    }
 
 
     @Bean

@@ -25,7 +25,7 @@ export class HelloWorldComponent implements OnInit {
     console.log("HelloWorldComponent");
     this.helloWorldService.helloWorldService().subscribe((result) => {
       this.message = ` Hello ${result.firstName}`;
-      this.feedbackService.saveUserdata( this.message);
+      this.feedbackService.saveUserdata( result);
     });
   }
 

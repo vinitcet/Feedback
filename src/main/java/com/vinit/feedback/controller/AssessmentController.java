@@ -77,7 +77,7 @@ public class AssessmentController {
         assessment.setModifiedDate(LocalDateTime.now());
         assessment.setModifiedBy(userService.getUser(assessment.getAccessorId()).get().getFullName());
         try {
-            assessmentService.completeAssesment(newAssessment);
+            assessmentService.completeAssesment(assessment);
         } catch (Exception e) {
             return "fail";
         }
