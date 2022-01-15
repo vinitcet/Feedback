@@ -23,8 +23,8 @@ export class SeekFeedbackComponent implements OnInit {
 
   sendRequest() {
     const payload = {
-      // "employeeId": this.userdata.id,
-      "employeeId": 2,
+      "employeeId": this.feedbackService.userdata.id,
+      //"employeeId": 2,
       "accessorId": this.accessorId,
       "accessorName": this.accessorId,
       "feedbackMessage": this.feedbackMessage
