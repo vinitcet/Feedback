@@ -76,7 +76,7 @@ public class AssessmentController {
         }
         //Sending mail logic
         try {
-            //mailService.sendSimpleMessage(assessment, user);
+            mailService.sendSimpleMessage(assessment, user);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,6 +94,12 @@ public class AssessmentController {
             assessmentService.completeAssesment(assessment);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        //Sending mail for Completing
+        try {
+            mailService.sendFeedbackCompletedMessage(assessment);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return new ResponseEntity<>(assessment, HttpStatus.OK);
     }
