@@ -1,5 +1,6 @@
-<h2>Reportee Feedback</h2>
-<table class="table">
+<h2 class="p-4">Reportee Feedback</h2>
+<div *ngIf='!managerAssessmentData' class="noRecords"> No records Found</div>
+<table class="table" *ngIf='managerAssessmentData'>
     <thead>
       <tr>
         <th scope="col">Emp Id</th>

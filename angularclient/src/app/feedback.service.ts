@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FeedbackService {
+  userdata: any;
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +25,7 @@ export class FeedbackService {
 
   getAssessmentByUser(): Observable<any> {
     // return this.http.get("./assets/listAssessmentByUser.json");
-    return this.http.get<any>('http://localhost:8080/assessment/listAssessmentByUser/3', { headers: this.headers });
+    return this.http.get<any>(`http://localhost:8080/assessment/listAssessmentByUser/${this.userdata.id}`, { headers: this.headers });
   }
 
   sendFeedbackRequest(payload): Observable<any> {
@@ -39,5 +40,9 @@ export class FeedbackService {
 
   requestFeedback(payload, id): Observable<any> {
     return this.http.put<any>(`http://localhost:8080/assessment/completeFeedback/${id}`, payload);
+  }
+
+  saveUserdata(data) {
+    this.userdata = data
   }
 }

@@ -1,5 +1,6 @@
-<h2>My Feedback</h2>
-<table class="table">
+<h2 class="p-4">My Feedback</h2>
+<div *ngIf='!userAssessmentData' class="noRecords"> No records Found</div>
+<table *ngIf='userAssessmentData' class="table">
     <thead>
       <tr>
         <th scope="col">Accessor Id</th>

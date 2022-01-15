@@ -1,5 +1,6 @@
-<h2>Feedback's Request</h2>
-<table class="table">
+<h2 class="p-4">Feedback's Request</h2>
+<div *ngIf='!assigneeAssessmentData' class="noRecords"> No records Found</div>
+<table class="table" *ngIf='assigneeAssessmentData'>
     <thead>
         <tr>
             <th scope="col">Emp Id</th>
