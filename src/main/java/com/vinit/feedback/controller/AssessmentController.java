@@ -6,8 +6,11 @@ import com.vinit.feedback.entity.User;
 import com.vinit.feedback.service.AssessmentService;
 import com.vinit.feedback.service.MailService;
 import com.vinit.feedback.service.UserService;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -47,7 +50,18 @@ public class AssessmentController {
 
     @PostMapping(value = "/addFeedbackRequest")
     //, consumes = "application/json", produces = "application/json")
-    public String addFeedbackRequest(@RequestBody Assessment assessment) {
+    public ResponseEntity<Assessment> addFeedbackRequest(@RequestBody Assessment assessment) {
+        //Getting accessor in case of Name
+        try {
+            if (!NumberUtils.isParsable(assessment.getAccessorName())) {
+                Long newAccessor = userService.findUserByFirstName(assessment.getAccessorName()).get().getId();
+                if (newAccessor != null) {
+                    assessment.setAccessorId(newAccessor);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         assessment.setStatus(String.valueOf(AssessmentStatus.Created));
         User user = userService.getUser(assessment.getEmployeeId()).get();
         assessment.setManagerId(user.getReportsTo());
@@ -58,7 +72,7 @@ public class AssessmentController {
         try {
             assessmentService.createAssesment(assessment);
         } catch (Exception e) {
-            return "Error";
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         //Sending mail logic
         try {
@@ -66,11 +80,11 @@ public class AssessmentController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "Success";
+        return new ResponseEntity<>(assessment, HttpStatus.OK);
     }
 
     @PutMapping(value = "/completeFeedback/{id}")
-    public String completeFeedback(@RequestBody Assessment newAssessment, @PathVariable Long id) {
+    public  ResponseEntity<Assessment> completeFeedback(@RequestBody Assessment newAssessment, @PathVariable Long id) {
         Assessment assessment = assessmentService.findAssessmentById(id).get();
         assessment.setFeedback(newAssessment.getFeedback());
         assessment.setStatus(String.valueOf(AssessmentStatus.AccessorCompleted));
@@ -79,9 +93,9 @@ public class AssessmentController {
         try {
             assessmentService.completeAssesment(assessment);
         } catch (Exception e) {
-            return "fail";
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return "Success";
+        return new ResponseEntity<>(assessment, HttpStatus.OK);
     }
 
     @GetMapping(value = "/addAssessment")

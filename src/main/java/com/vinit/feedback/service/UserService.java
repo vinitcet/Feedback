@@ -15,12 +15,12 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    @Cacheable(value="users")
+    @Cacheable(value = "users")
     public List<User> getAllUsers() {
         return userDao.findAll();
     }
 
-    @CacheEvict(value = "users",allEntries = true)
+    @CacheEvict(value = "users", allEntries = true)
     public User createUser(User user) {
         return userDao.save(user);
     }
@@ -29,13 +29,17 @@ public class UserService {
         return userDao.save(user);
     }
 
-    @CacheEvict(value = "users",allEntries = true)
+    @CacheEvict(value = "users", allEntries = true)
     public void deleteUser(Long id) {
         userDao.deleteById(id);
     }
 
     public Optional<User> getUser(Long id) {
         return userDao.findById(id);
+    }
+
+    public Optional<User> findUserByFirstName(String name) {
+        return userDao.findUserByFirstName(name);
     }
 }
 
