@@ -32,7 +32,7 @@ export class SeekFeedbackComponent implements OnInit {
     this.feedbackService.sendFeedbackRequest(payload).subscribe(data => { console.log(payload)
       console.log(data);
       this.successFbRequest = true;
-      this.successMessage = data
+      this.successMessage = 'Feedback Request has been sent Successfully !'
       this.accessorId = ''
       this.feedbackMessage = ''
     }, () => {
