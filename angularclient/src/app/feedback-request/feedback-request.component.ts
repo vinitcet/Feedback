@@ -16,26 +16,31 @@ export class FeedbackRequestComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.feedbackService.getAssessmentByAssignee().subscribe(data => {
-      console.log(data);
-      this.assigneeAssessmentData = data
-    });
+    this.callAssigneeApi()
   }
 
-  view(data) { console.log(data)
-    this.viewFeedbackData = data ;
+  view(data) {
+    console.log(data)
+    this.viewFeedbackData = data;
     $('#viewMemberModal').modal('show');
   }
 
-  requestFb(){
+  requestFb() {
     const payload = {
-      feedback : this.feedbackMessage
+      feedback: this.feedbackMessage
     }
     this.feedbackService.requestFeedback(payload, this.viewFeedbackData.id).subscribe(data => {
       console.log(data);
-      
+
       $('#viewMemberModal').modal('hide');
-      this.showMessage =true
+      this.showMessage = true
+      this.callAssigneeApi()
+    });
+  }
+  callAssigneeApi() {
+    this.feedbackService.getAssessmentByAssignee().subscribe(data => {
+      console.log(data);
+      this.assigneeAssessmentData = data
     });
   }
 
