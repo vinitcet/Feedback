@@ -27,23 +27,23 @@ public class UserController {
     @GetMapping(value = "/addUser")
     public void addUser() {
         User user = new User();
-        user.setId(4l);
+        user.setId(5l);
         user.setActive(true);
-        user.setFirstName("Pushpa");
+        user.setFirstName("Vihaan");
         user.setLastName("Verma");
         user.setPassword("Password");
         user.setPasswordChangeRequired(false);
         user.setCreatedBy("Admin");
-        user.setEmail("pushpa91@gmail.com");
+        user.setEmail("vihaanverma@gmail.com");
         user.setCreatedDate(LocalDateTime.now());
         user.setModifiedDate(LocalDateTime.now());
-        user.setDepartment("Hardware");
+        user.setDepartment("Engineering");
         user.setLocation("India");
-        user.setGender("Female");
+        user.setGender("Male");
         user.setModifiedBy("Admin");
-        user.setPosition("Manager");
-        user.setPhone("9415688221");
-        user.setReportsTo(1l);
+        user.setPosition("Trainee");
+        user.setPhone("9620052202");
+        user.setReportsTo(2l);
         try {
             userService.saveUser(user);
         } catch (Exception e) {

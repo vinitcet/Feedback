@@ -28,7 +28,7 @@ export class SeekFeedbackComponent implements OnInit {
     isnum = (num == num) ? true : false
     console.log(isnum)
     const payload = {
-      "employeeId": 'this.feedbackService.userdata.id',
+      "employeeId": this.feedbackService.userdata.id,
       // accessor: this.accessorId,
       // "accessorName": this.accessorId,
       "feedbackMessage": this.feedbackMessage
