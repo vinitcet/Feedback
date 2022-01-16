@@ -35,6 +35,7 @@ export class FeedbackRequestComponent implements OnInit {
       $('#viewMemberModal').modal('hide');
       this.showMessage = true
       this.callAssigneeApi()
+      this.resetForm()
     });
   }
   callAssigneeApi() {
@@ -44,4 +45,7 @@ export class FeedbackRequestComponent implements OnInit {
     });
   }
 
+  resetForm() {
+    this.feedbackMessage = ''
+  }
 }
