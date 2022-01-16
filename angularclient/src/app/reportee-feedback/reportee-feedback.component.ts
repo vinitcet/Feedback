@@ -7,7 +7,7 @@ import { FeedbackService } from '../feedback.service';
   styleUrls: ['./reportee-feedback.component.css']
 })
 export class ReporteeFeedbackComponent implements OnInit {
-  managerAssessmentData: any;
+  managerAssessmentData: any = [];
 
   constructor(
     private feedbackService: FeedbackService

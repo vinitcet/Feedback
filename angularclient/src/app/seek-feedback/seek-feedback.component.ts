@@ -44,10 +44,19 @@ export class SeekFeedbackComponent implements OnInit {
       this.successMessage = 'Feedback Request has been sent Successfully !'
       this.accessorId = ''
       this.feedbackMessage = ''
+      $('#viewMemberModal').show();
+      setTimeout(function () {
+        $('#viewMemberModal').hide();
+
+      }, 2000);
     }, () => {
       this.failFbRequest = true;
       this.successFbRequest = false;
-      this.errorMessage = 'Failed to send feedback request'
+      this.errorMessage = 'Failed to send feedback request';
+      $('#viewMemberModal').show();
+      setTimeout(function () {
+        $('#viewMemberModal').hide();
+      }, 2000);
     });
   }
 }

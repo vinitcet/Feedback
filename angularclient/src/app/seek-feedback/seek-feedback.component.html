@@ -5,8 +5,8 @@
       <form class="form-group">
         <div class="form-group">
           <label for="email">Accessor :</label>
-          <input class="form-control" id="accessorId" [(ngModel)]="accessorId"
-            placeholder="Enter Accessor Name/ID" name="accessorId">
+          <input class="form-control" id="accessorId" [(ngModel)]="accessorId" placeholder="Enter Accessor Name/ID"
+            name="accessorId">
         </div>
         <div class="form-group">
           <label for="pwd">Message:</label>
@@ -16,8 +16,24 @@
         <button (click)=sendRequest() [disabled]='!feedbackMessage || !accessorId' class="btn btn-success">Send Feedback
           Request</button>
       </form>
-      <div class="alert alert-warning" *ngIf='failFbRequest'>{{errorMessage}}</div>
-      <div class="alert alert-success" *ngIf='successFbRequest'>{{successMessage}}</div>
+      <!-- <div class="alert alert-warning" id="errorMsg" *ngIf='failFbRequest'>{{errorMessage}}</div> -->
+      <!-- <div class="alert alert-success" id="successMsg" *ngIf='successFbRequest'>{{successMessage}}</div> -->
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="viewMemberModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <img class="tick" *ngIf='successFbRequest' src="assets/tick.png" alt="">
+        <img class="tick" *ngIf='failFbRequest' src="assets/alert.png" alt="">
+        <div class="alert alert-success" id="successMsg" style="margin-top: 25px;" *ngIf='successFbRequest'>{{successMessage}}</div>
+        <div class="alert alert-warning" id="errorMsg" style="margin-top: 25px;" *ngIf='failFbRequest'>{{errorMessage}}</div>
+      </div>
+
     </div>
   </div>
 </div>

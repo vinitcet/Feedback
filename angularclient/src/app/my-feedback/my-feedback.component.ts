@@ -7,7 +7,7 @@ import { FeedbackService } from '../feedback.service';
   styleUrls: ['./my-feedback.component.css']
 })
 export class MyFeedbackComponent implements OnInit {
-  userAssessmentData: any;
+  userAssessmentData: any=[];
 
   constructor(private feedbackService: FeedbackService
   ) { }
@@ -15,6 +15,7 @@ export class MyFeedbackComponent implements OnInit {
   ngOnInit() {
     this.feedbackService.getAssessmentByUser().subscribe(data => {
       this.userAssessmentData = data
+      console.log(this.userAssessmentData.length)
   });
   
   }
