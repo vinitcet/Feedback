@@ -6,6 +6,7 @@ import com.vinit.feedback.entity.User;
 import com.vinit.feedback.service.AssessmentService;
 import com.vinit.feedback.service.MailService;
 import com.vinit.feedback.service.UserService;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +19,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/assessment", produces = {MediaType.APPLICATION_JSON_VALUE})
+@Log
 public class AssessmentController {
     @Autowired
     public AssessmentService assessmentService;
@@ -38,13 +40,16 @@ public class AssessmentController {
     }
 
     @GetMapping(value = "/listAssessmentByUser/{userId}")
-    public List<Assessment> findAssesmentByUser(@PathVariable Long userId) {
-        return assessmentService.getUserAssessment(userId);
+    public ResponseEntity<List<Assessment>> findAssesmentByUser(@PathVariable Long userId) {
+        log.info("findAssesmentByUser method is called");
+        List<Assessment> ls  =assessmentService.getUserAssessment(userId);
+        return new ResponseEntity<>(ls,HttpStatus.OK);
     }
 
     @GetMapping(value = "/listAssessmentByAssignee/{userId}")
-    public List<Assessment> findAssesmentByAssignee(@PathVariable Long userId) {
-        return assessmentService.getUserAssignedRequest(userId);
+    public ResponseEntity<List<Assessment>> findAssesmentByAssignee(@PathVariable Long userId) {
+        List<Assessment> ls =assessmentService.getUserAssignedRequest(userId);
+        return new ResponseEntity<>(ls,HttpStatus.OK);
     }
 
     @PostMapping(value = "/addFeedbackRequest")

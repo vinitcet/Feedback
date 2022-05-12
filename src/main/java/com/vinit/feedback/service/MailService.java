@@ -37,6 +37,7 @@ public class MailService {
                             + "\n\n\n" + "This is a system generated mail. Copyright Feedback 360 App."
 
             );
+
             emailSender.send(message);
         } catch (MailException exception) {
             exception.printStackTrace();

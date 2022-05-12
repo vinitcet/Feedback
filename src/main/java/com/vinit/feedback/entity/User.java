@@ -1,5 +1,6 @@
 package com.vinit.feedback.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -16,6 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
+    @JsonIgnore
     private String password;
     private String role;
     @NotNull
@@ -39,13 +41,18 @@ public class User {
 
     private String position;
 
+    @JsonIgnore
     private String createdBy;
-
+    @JsonIgnore
     private String modifiedBy;
     @CreationTimestamp
+    @JsonIgnore
     private LocalDateTime createdDate;
+    @JsonIgnore
     private LocalDateTime modifiedDate;
+    @JsonIgnore
     private boolean active = true;
+    @JsonIgnore
     private boolean passwordChange = true;
 
     @Transient

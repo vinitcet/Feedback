@@ -12,7 +12,10 @@ spring:
       ddl-auto: none #create
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
       dialect: org.hibernate.dialect.MySQL5Dialect
-# Gmail SMTP
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  # Gmail SMTP
   mail:
     host: smtp.gmail.com
     port: 587

@@ -48,7 +48,7 @@ export class SeekFeedbackComponent implements OnInit {
       setTimeout(function () {
         $('#viewMemberModal').hide();
 
-      }, 2000);
+      }, 3000);
     }, () => {
       this.failFbRequest = true;
       this.successFbRequest = false;
