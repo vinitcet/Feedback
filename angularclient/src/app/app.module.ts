@@ -7,7 +7,7 @@ import { HelloWorldComponent } from './hello-world/hello-world.component';
 import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpInterceptorService } from './httpInterceptor.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -15,6 +15,12 @@ import { SeekFeedbackComponent } from './seek-feedback/seek-feedback.component';
 import { ReporteeFeedbackComponent } from './reportee-feedback/reportee-feedback.component';
 import { FeedbackRequestComponent } from './feedback-request/feedback-request.component';
 import { MyFeedbackComponent } from './my-feedback/my-feedback.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -30,8 +36,14 @@ import { MyFeedbackComponent } from './my-feedback/my-feedback.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   providers: [

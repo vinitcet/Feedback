@@ -1,5 +1,7 @@
 package com.vinit.feedback.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -7,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table
+@Data
 public class Assessment {
 
     @Id
@@ -32,6 +35,8 @@ public class Assessment {
     private String modifiedBy;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
+    @Transient
+    private String accessorEmail;
 
     public static Assessment EMPTY() {
         return new Assessment();

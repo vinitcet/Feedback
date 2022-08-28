@@ -18,7 +18,10 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: red;
+  background-color: grey;
   color: white;
   text-align: center;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

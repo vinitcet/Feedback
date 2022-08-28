@@ -17,7 +17,9 @@ public class UserService {
 
     @Cacheable(value = "users")
     public List<User> getAllUsers() {
-        return userDao.findAll();
+        List<User> userList = userDao.findAll();
+        userList.stream().forEach(user -> user.setImageContent(null));
+        return userList;
     }
 
     @CacheEvict(value = "users", allEntries = true)
@@ -40,6 +42,10 @@ public class UserService {
 
     public Optional<User> findUserByFirstName(String name) {
         return userDao.findUserByFirstName(name);
+    }
+
+    public Optional<User> findUserByEmail(String email) {
+        return userDao.findUserByEmail(email);
     }
 }
 

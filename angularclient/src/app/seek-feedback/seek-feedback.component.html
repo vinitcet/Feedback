@@ -5,8 +5,15 @@
       <form class="form-group">
         <div class="form-group">
           <label for="email">Accessor :</label>
-          <input class="form-control" id="accessorId" [(ngModel)]="accessorId" placeholder="Enter Accessor Name/ID"
-            name="accessorId">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input type="text" placeholder="Enter Accessor Name" [formControl]="myControl" matInput
+              [matAutocomplete]="auto" id="accessorId" [(ngModel)]="accessorId" name="accessorId">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.email">
+                <span>{{option.fullName}}</span> | <span>{{option.email}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
         </div>
         <div class="form-group">
           <label for="pwd">Message:</label>
@@ -30,8 +37,10 @@
       <div class="modal-body">
         <img class="tick" *ngIf='successFbRequest' src="assets/tick.png" alt="">
         <img class="tick" *ngIf='failFbRequest' src="assets/alert.png" alt="">
-        <div class="alert alert-success" id="successMsg" style="margin-top: 25px;" *ngIf='successFbRequest'>{{successMessage}}</div>
-        <div class="alert alert-warning" id="errorMsg" style="margin-top: 25px;" *ngIf='failFbRequest'>{{errorMessage}}</div>
+        <div class="alert alert-success" id="successMsg" style="margin-top: 25px;" *ngIf='successFbRequest'>
+          {{successMessage}}</div>
+        <div class="alert alert-warning" id="errorMsg" style="margin-top: 25px;" *ngIf='failFbRequest'>{{errorMessage}}
+        </div>
       </div>
 
     </div>

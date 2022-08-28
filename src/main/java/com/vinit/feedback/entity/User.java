@@ -1,8 +1,10 @@
 package com.vinit.feedback.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -12,6 +14,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,17 +27,20 @@ public class User {
     private String firstName;
     @NotNull
     private String lastName;
+    @JsonIgnore
     private String title;
     private String gender;
     @Email
     @NotEmpty
     private String email;
-
+    @JsonIgnore
     private String location;
     private String phone;
+    @JsonIgnore
     private String bio;
+    @JsonIgnore
     private String image;
-
+    @JsonIgnore
     private Long reportsTo;
 
     private String department;
@@ -54,8 +60,8 @@ public class User {
     private boolean active = true;
     @JsonIgnore
     private boolean passwordChange = true;
-
-    @Transient
+    @Lob
+    @Type(type = "org.hibernate.type.ImageType")
     private byte[] imageContent = new byte[0];
 
     public User() {
@@ -87,7 +93,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    @JsonIgnore
     public boolean isAdmin() {
         return this.role != null && this.role.equalsIgnoreCase("Admin");
     }
@@ -123,7 +129,7 @@ public class User {
     public void setBio(final String bio) {
         this.bio = bio;
     }
-
+    @JsonIgnore
     public boolean isMale() {
         return this.gender != null && this.gender.equalsIgnoreCase("MALE");
     }
@@ -205,7 +211,7 @@ public class User {
     public void setActive(boolean active) {
         this.active = active;
     }
-
+    @JsonIgnore
     public boolean isPasswordChangeRequired() {
         return passwordChange;
     }
@@ -213,11 +219,11 @@ public class User {
     public void setPasswordChangeRequired(final boolean passwordChange) {
         this.passwordChange = passwordChange;
     }
-
+    @JsonIgnore
     public byte[] getPictureContent() {
         return this.imageContent;
     }
-
+    @JsonIgnore
     public String getPictureName() {
         return this.image;
     }
@@ -225,7 +231,7 @@ public class User {
     public boolean hasPicture() {
         return this.image != null && this.imageContent.length > 0;
     }
-
+    @JsonIgnore
     public boolean isNew() {
         return null == this.id;
     }
@@ -266,19 +272,19 @@ public class User {
         this.modifiedDate = modifiedDate;
     }
 
-
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
-
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
-
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }

@@ -57,9 +57,13 @@ public class AssessmentController {
     public ResponseEntity<Assessment> addFeedbackRequest(@RequestBody Assessment assessment) {
         //Getting accessor in case of Name
         try {
-            if (null == assessment.getAccessorId()) {
+            if (null!=assessment.getAccessorName()) {
                 Long newAccessor = userService.findUserByFirstName(assessment.getAccessorName()).get().getId();
                 assessment.setAccessorId(newAccessor);
+            }else if(null!=assessment.getAccessorEmail()){
+                Long newAccessor = userService.findUserByEmail(assessment.getAccessorEmail()).get().getId();
+                assessment.setAccessorId(newAccessor);
+
             }
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

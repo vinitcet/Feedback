@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedbackService } from '../feedback.service';
+import { Observable } from 'rxjs';
+import { startWith, debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+
 declare var $: any;
 
 @Component({
@@ -15,10 +19,35 @@ export class SeekFeedbackComponent implements OnInit {
   successFbRequest: boolean;
   failFbRequest: boolean;
   errorMessage: string;
+  allEmployeeList: any = [];
+  myControl = new FormControl();
+  options = [];
+  filteredOptions: Observable<any>;
+
   constructor(private feedbackService: FeedbackService
-  ) { }
+  ) {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(400),
+      distinctUntilChanged(),
+      switchMap(val => {
+        return this.filter(val || '')
+      })
+    )
+  }
+
+  filter(val: string): Observable<any> {
+    return this.feedbackService.getAllUsers().pipe(map(response => response.filter(option => {
+      return option.fullName.toLowerCase().includes(val.toLowerCase())
+    })))
+  }
 
   ngOnInit() {
+    console.log('inside init')
+    this.feedbackService.getAllUsers().subscribe(data => {
+      console.log(data);
+      this.allEmployeeList = data
+    });
   }
 
 
@@ -33,7 +62,7 @@ export class SeekFeedbackComponent implements OnInit {
       // "accessorName": this.accessorId,
       "feedbackMessage": this.feedbackMessage
     }
-    var accessor = isnum ? "accessorId" : "accessorName"
+    var accessor = isnum ? "accessorId" : "accessorEmail"
     this.accessorId = isnum ? Number(this.accessorId) : this.accessorId
     payload[accessor] = this.accessorId
 

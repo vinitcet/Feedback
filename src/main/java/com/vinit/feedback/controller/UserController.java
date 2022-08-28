@@ -6,9 +6,15 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -22,6 +28,11 @@ public class UserController {
     @GetMapping(value = "/users")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @GetMapping(value = "/allUsers")
+    public List<String> getAllUsersName() {
+        return userService.getAllUsers().stream().map(User::getFirstName).collect(Collectors.toList());
     }
 
     @GetMapping(value = "/addUser")
@@ -61,4 +72,11 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+    @GetMapping(value = "/addPhoto")
+    void addPhoto(@RequestParam Long id, @RequestParam String photo) throws IOException {
+        User user = userService.getUser(id).get();
+        FileInputStream fis = new FileInputStream(new File(photo));
+        user.setImageContent(fis.readAllBytes());
+        userService.saveUser(user);
+    }
 }

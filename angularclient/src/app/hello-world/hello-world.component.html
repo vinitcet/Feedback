@@ -1,6 +1,9 @@
 <app-menu></app-menu>
 
-<h4 style="text-align: right;">{{message}}</h4>
+<div style="float: right;">
+    <span style="font-weight: bold;" >{{message}}</span>
+    <img class="zoom" [src]="imageContent" width="50" height="50" style="border-radius: 50%;" />
+</div>
 <div class="d-flex">
     <div class="d-flex flex-column">
         <button (click)='seekFeedback()' class="btn btn-primary m-4">Seek Feedback</button>
@@ -23,6 +26,6 @@
             *ngIf="(myFeedbackCheck||feedbackRequestCheck||reporteeFeedbackCheck||seekFeedbackCheck)">
             <button (click)=home() class="btn btn-warning m-4">Cancel</button>
         </div>
-</div>
+    </div>
 
 </div>

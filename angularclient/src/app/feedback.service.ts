@@ -41,6 +41,11 @@ export class FeedbackService {
   requestFeedback(payload, id): Observable<any> {
     return this.http.put<any>(`http://localhost:8080/assessment/completeFeedback/${id}`, payload);
   }
+  
+  getAllUsers(): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/user-management/users`, { headers: this.headers });
+  }
+
 
   saveUserdata(data) {
     this.userdata = data

@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface UserDao extends JpaRepository<User, Long> {
 
     Optional<User> findUserByFirstName(String name);
+
+    Optional<User> findUserByEmail(String email);
 }
